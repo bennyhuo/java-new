@@ -14,7 +14,7 @@ import sun.misc.Unsafe;
 public class ForeignApis {
 
     static {
-        System.loadLibrary("libsimple");
+        System.loadLibrary("simple");
     }
 
     public static void main(String[] args) {

@@ -9,7 +9,7 @@
 
 #ifdef _MSC_VER
 #  define LIBRARY_API __declspec(dllexport)
-#elif
+#else
 #  define LIBRARY_API
 #endif
 

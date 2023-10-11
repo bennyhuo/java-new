@@ -14,11 +14,14 @@ java {
 }
 
 tasks.withType<JavaCompile> {
-    options.compilerArgs.add("--enable-preview")
+    options.compilerArgs.addAll(listOf(
+        "--enable-preview",
+        "--add-modules=jdk.incubator.vector"
+    ))
 }
 
 tasks.withType<JavaExec>() {
-    jvmArgs("--enable-preview", "-Djava.library.path=./lib/bin")
+    jvmArgs("--enable-preview", "-Djava.library.path=./lib", "--add-modules=jdk.incubator.vector")
 }
 
 dependencies {
