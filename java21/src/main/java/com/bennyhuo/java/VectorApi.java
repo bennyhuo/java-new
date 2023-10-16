@@ -1,8 +1,6 @@
 package com.bennyhuo.java;
 
-import java.util.Arrays;
 import java.util.Random;
-
 import jdk.incubator.vector.FloatVector;
 import jdk.incubator.vector.VectorSpecies;
 
