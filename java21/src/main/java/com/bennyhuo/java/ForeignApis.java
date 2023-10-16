@@ -18,8 +18,8 @@ public class ForeignApis {
     }
 
     public static void main(String[] args) {
-        // useUnsafe();
-//        useNewMemoryApi();
+        useUnsafe();
+        useNewMemoryApi();
         downCall();
         upCall();
         callSystem();
@@ -36,7 +36,7 @@ public class ForeignApis {
 
             MemorySegment getCLangVersion = loaderLookup.find("GetCLangVersion").get();
             // 方法二
-            // MemorySegment getCLangVersion = SymbolLookup.libraryLookup("libsimple", Arena.ofAuto()).find("GetCLangVersion").get();
+            // MemorySegment getCLangVersion = SymbolLookup.libraryLookup("simple", Arena.ofAuto()).find("GetCLangVersion").get();
             MethodHandle getClangVersionHandle = linker.downcallHandle(getCLangVersion, FunctionDescriptor.of(ValueLayout.JAVA_INT));
 
             System.out.println(getClangVersionHandle.invoke());
@@ -48,8 +48,10 @@ public class ForeignApis {
                     ValueLayout.JAVA_INT.withName("age"));
 
             MemorySegment person = Arena.ofAuto().allocate(personLayout);
+            // person -> id = ....
             VarHandle idHandle = personLayout.varHandle(MemoryLayout.PathElement.groupElement("id"));
             idHandle.set(person, 1000000);
+            System.out.println(idHandle.get(person));
 
             // 方法一
             VarHandle nameHandle = personLayout.varHandle(
